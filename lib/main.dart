@@ -106,8 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               _counter % 2 == 0 ? 'GENAP' : 'GANJIL',
               style: TextStyle(
-                  color:
-                      _counter % 2 == 0 ? Colors.redAccent : Colors.blueAccent),
+                color: _counter % 2 == 0 ? Colors.redAccent : Colors.blueAccent,
+              ),
             ),
             Text(
               '$_counter',
