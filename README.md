@@ -99,3 +99,20 @@ Both are used to say that a variable will be immutable. The difference is in the
     ```
 
 6. Commit changes and push to the remote repository.
+
+# Assignment 8: Flutter Form
+
+## `Navigator.push` and `Navigator.pushReplacement`
+
+In a Flutter app, there is route/page stack which keeps track of all the routes we've accessed/opened right now to allow for backtracking into a previous page. `push` will add a route to the stack where as `pushReplacement` will replace the current route with another instead of pushing on top of it.
+
+## Widgets used
+
+1. `DropdownButtonHideUnderline`: Removes underline of `DropdownButton`
+2. `DropdownButton`: Shows a dropdown of options.
+3. `ListView.builder`: Builds a `ListView` dynamically.
+4. `ListTile`: An element of a list like component.
+
+## Events
+
+- `onPressed`: Triggers when a widget is pressed.
