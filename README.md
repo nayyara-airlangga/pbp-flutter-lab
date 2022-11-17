@@ -115,4 +115,18 @@ In a Flutter app, there is route/page stack which keeps track of all the routes 
 
 ## Events
 
-- `onPressed`: Triggers when a widget is pressed.
+- `onPressed`: Triggers when a widget is pressed (mainly buttons).
+- `onTap`: Triggers when tap (mainly for gesture captures).
+- `onChange`: Triggers when the value of a widget has changed.
+
+## How `Navigator` change pages
+
+As said before, if we use `push`, it will push a new route on top of the route stack which is the one that's going to e rendered. To go back from a page, there are `pop` methods which will literally pop the route off of the route stack, which will in turn make the previous route the current route.
+
+## Implementation details
+
+1. Create app drawer which is used for navigation.
+2. Add a `Budget` class to represent a budget with its properties (judul, nominal, tipe, tanggal).
+3. Create a form page to add budget. The form accepts a judul `String`, nominal `int`, tipe `String`, and tanggal `DateTime` as its fields corresponding to the `Budget` class.
+4. Add a global library to hold the state of all the budgets added (a bit hacky but it works).
+5. Render the budget list from the global library inside of a page (`BudgetDataPage`) using `ListView` and `ListTile`s.
