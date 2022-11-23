@@ -1,5 +1,6 @@
 import 'package:counter_7/datasource/mywatchlist.dart';
 import 'package:counter_7/models/mywatchlist.dart';
+import 'package:counter_7/widgets/mywatchlist/watchlist-tile.dart';
 import 'package:counter_7/widgets/shared/app_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -36,31 +37,8 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
 
             return ListView.builder(
               itemCount: watchlists.length,
-              itemBuilder: (ctx, i) => Container(
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 3),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: watchlists[i].fields.watched
-                        ? Colors.green
-                        : Colors.grey,
-                    width: 4,
-                  ),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: ListTile(
-                  title: Text(watchlists[i].fields.title),
-                  trailing: Checkbox(
-                    value: watchlists[i].fields.watched,
-                    activeColor: Colors.green,
-                    onChanged: (bool? val) {
-                      if (val != null) {
-                        setState(() {
-                          watchlists[i].fields.watched = val;
-                        });
-                      }
-                    },
-                  ),
-                ),
+              itemBuilder: (ctx, i) => WatchlistTile(
+                fields: watchlists[i].fields,
               ),
             );
           },
