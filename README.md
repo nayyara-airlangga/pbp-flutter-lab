@@ -130,3 +130,69 @@ As said before, if we use `push`, it will push a new route on top of the route s
 3. Create a form page to add budget. The form accepts a judul `String`, nominal `int`, tipe `String`, and tanggal `DateTime` as its fields corresponding to the `Budget` class.
 4. Add a global library to hold the state of all the budgets added (a bit hacky but it works).
 5. Render the budget list from the global library inside of a page (`BudgetDataPage`) using `ListView` and `ListTile`s.
+
+# Assignment 9: Web Service Integration in Flutter
+
+## Is it possible to fetch JSON data without making a model? If so, is it better than creating a model beforehand?
+
+Yes it is possible since JSON objects can be represented as `Map<String, dynamic>` or a `List` of them. However, there are caveats compared to making a model. We can't do
+validation on its fields (technically we can but its a very tedious process in the long term) and could lead to undefined behaviour more often. We can conclude that it's
+not better than making a model beforehand.
+
+## Widgets used
+
+For the sake of minimizing redundancy, I will just mention the new widgets I used here.
+
+- `RefreshIndicator`: Widget that can trigger a refresh which can be used to handle things such as refetching data and triggering another `Future`.
+- `FutureBuilder`: It's a widget which builds itself based on the state and contets of a `Future`.
+- `ElevatedButton`: A very standard button with text in the middle.
+- `Checkbox`: A box with can be marked with a checkmark to indicate two different states.
+
+## My data fetching and rendering mechanism
+
+I implemented an async handler which returns a `Future<List<MyWatchlist>>`. This handler will fetch the JSON data from my web server over HTTP and transforms the JSON 
+objects into instances of `MyWatchlist`. Then I defined a future of the same type as a state field in `MyWatchlistPage` which will initially call this async handler. 
+`FutureBuilder` on the page is registered with this future. `FutureBuilder` will have snapshots which, when the connection state is finished, should contain the list of watchlists.
+
+## Implementation details
+
+1. Create a `MyWatchlistPage` and add it to the `AppDrawer`.
+
+2. Create a `MyWatchlist` model.
+
+3. Create the async handler to fetch the JSON data.
+
+```dart
+Future<List<MyWatchlist>> getMyWatchlists() async {
+  final uri =
+      Uri.parse("http://pbp-web-assignment.herokuapp.com/mywatchlist/json");
+  final res = await http.get(uri, headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  });
+  final data = jsonDecode(res.body);
+
+  List<MyWatchlist> myWatchlists = [];
+  for (dynamic item in data) {
+    if (item != null) {
+      myWatchlists.add(MyWatchlist.fromMap(item));
+    }
+  }
+
+  return myWatchlists;
+}
+```
+
+4. Register the future type returned from the async handler in `MyWatchlistPage` as a state field and pass it to its `FutureBuilder`.
+5. Add navigators on each movie list tile to direct it to its detail page.
+
+```dart
+Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyWatchlistDetailPage(movie: widget.fields),
+            ),
+          );
+```
+
+6. Implement `MyWatchlistDetailPage` which will render the details of each movie.
