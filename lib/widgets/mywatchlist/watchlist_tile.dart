@@ -1,4 +1,5 @@
 import 'package:counter_7/models/mywatchlist.dart';
+import 'package:counter_7/page/mywatchlist/mywatchlist_detail.dart';
 import 'package:flutter/material.dart';
 
 class WatchlistTile extends StatefulWidget {
@@ -23,6 +24,14 @@ class _WatchlistTileState extends State<WatchlistTile> {
         borderRadius: BorderRadius.circular(6),
       ),
       child: ListTile(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyWatchlistDetailPage(movie: widget.fields),
+            ),
+          );
+        },
         title: Text(widget.fields.title),
         trailing: Checkbox(
           value: widget.fields.watched,
