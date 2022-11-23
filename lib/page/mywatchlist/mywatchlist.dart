@@ -1,6 +1,6 @@
 import 'package:counter_7/datasource/mywatchlist.dart';
 import 'package:counter_7/models/mywatchlist.dart';
-import 'package:counter_7/widgets/mywatchlist/watchlist-tile.dart';
+import 'package:counter_7/widgets/mywatchlist/watchlist_tile.dart';
 import 'package:counter_7/widgets/shared/app_drawer.dart';
 import 'package:flutter/material.dart';
 
