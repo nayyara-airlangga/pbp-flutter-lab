@@ -1,7 +1,7 @@
-import 'package:counter_7/app_drawer.dart';
+import 'package:counter_7/widgets/shared/app_drawer.dart';
 import 'package:flutter/material.dart';
 
-import 'globals.dart' as globals;
+import 'package:counter_7/globals.dart' as globals;
 
 class BudgetDataPage extends StatefulWidget {
   const BudgetDataPage({super.key});

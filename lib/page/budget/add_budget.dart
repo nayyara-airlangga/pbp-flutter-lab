@@ -1,29 +1,16 @@
-import 'package:counter_7/app_drawer.dart';
-import 'package:counter_7/budget_data.dart';
+import 'package:counter_7/widgets/shared/app_drawer.dart';
+import 'package:counter_7/page/budget/budget_data.dart';
+import 'package:counter_7/models/budget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'globals.dart' as globals;
+import 'package:counter_7/globals.dart' as globals;
 
 class AddBudgetPage extends StatefulWidget {
   const AddBudgetPage({super.key});
 
   @override
   State<AddBudgetPage> createState() => _AddBudgetPageState();
-}
-
-class Budget {
-  String judul;
-  int nominal;
-  String tipe;
-  DateTime tanggal;
-
-  Budget({
-    required this.judul,
-    required this.nominal,
-    required this.tipe,
-    required this.tanggal,
-  });
 }
 
 class _AddBudgetPageState extends State<AddBudgetPage> {
